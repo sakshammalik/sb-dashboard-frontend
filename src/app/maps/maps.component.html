@@ -1,0 +1,23 @@
+<table class="counter_table">
+    <tbody>
+      <tr>
+          <td>
+                <h2>
+                    Hashtag: <input type="text" placeholder="Enter Hashtag..." [(ngModel)]="hashtag" [disabled]="disableInput">
+                    <button [disabled]="!hashtag.length || disableInput" (click)="buttonClick(hashtag)">Start Stream</button>
+                <button *ngIf="stream_status == 'Stream Started'" (click)="stopStream()">Stop Stream</button>
+                  #{{hashtag}}
+                </h2> 
+          </td>
+          <td>
+              <h2>Tweets Processed: {{tweet_counter}}</h2>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+<h3 *ngIf="stream_status">{{stream_status}}</h3>
+<div class='map' id='map'></div>
+<!-- <button (click)=buttonClick2()>Get socket id</button> -->
+<!-- <div *ngFor="let loc of display">
+    {{loc}}
+</div> -->
