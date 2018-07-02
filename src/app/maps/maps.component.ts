@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 // import { GoogleMapsAPIWrapper } from '@agm/core';
 import * as carto from '@carto/carto.js';
 import { MapService } from '../map.service';
-import { Observable } from 'rxjs/observable';
+// import { Observable } from 'rxjs/observable';
 import {timer} from 'rxjs/observable/timer';
 import * as mapboxgl from 'mapbox-gl';
 import * as socket from 'socket.io-client';
