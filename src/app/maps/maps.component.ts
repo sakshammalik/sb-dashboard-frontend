@@ -28,7 +28,7 @@ export class MapsComponent implements OnInit {
   coord: any;
   timerSource: any;
   feat: any;
-  hashtag: any;
+  hashtag = '';
   tweet_counter: any = 0;
   isDisabled = true;
   stream_status = '';
