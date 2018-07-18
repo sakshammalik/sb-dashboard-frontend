@@ -6,7 +6,8 @@ import * as mapboxgl from 'mapbox-gl';
 import * as socketIo from 'socket.io-client';
 // import { Socket } from 'ngx-socket-io';
 
-const SERVER_URL = 'https://infinite-wildwood-62781.herokuapp.com/socket.io/';
+// const SERVER_URL = 'https://infinite-wildwood-62781.herokuapp.com/socket.io/';
+const SERVER_URL = 'http://ec2-13-232-173-105.ap-south-1.compute.amazonaws.com:8000/socket.io/';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +46,13 @@ export class MapService {
   }
   stopStream() {
     this.socket.emit('stop stream');
+  }
+  getDataFromDb() {
+    this.socket.emit('get data');
+  }
+  getData() {
+    return new Observable(observer => {
+      this.socket.on('data sent', (hashtag) => observer.next(hashtag));
+    });
   }
 }

@@ -34,6 +34,7 @@ export class MapsComponent implements OnInit {
   stream_status = '';
   stop_stream = false;
   disableInput = false;
+  fetchData: any;
 
   ngOnInit() {
     if (this.hashtag) {
@@ -133,8 +134,7 @@ export class MapsComponent implements OnInit {
       );
       this.mapApi.socket.emit('hashtag', this.hashtag);
       this.mapApi.getHashtag().subscribe(
-        data => {this.hashtag = data;
-        console.log(this.hashtag); }
+        data => {this.hashtag = data; }
       );
       this.mapApi.emitEvent();
       this.mapApi.getTweets().subscribe(
@@ -146,12 +146,17 @@ export class MapsComponent implements OnInit {
         err => {console.log(err); },
         () => {console.log('completed'); }
       );
+
+      this.fetchData = setInterval( () => {
+        console.log('get data');
+        this.mapApi.getDataFromDb();
+      }, 5000);
+      this.mapApi.getData().subscribe(
+        data => {console.log(data); }
+      );
     } else {
       this.stream_status = 'Plesae enter a hashtag first';
     }
-
-    console.log(this.stream_status);
-    console.log(this.hashtag);
     // this.plotOnMap(this.map, [76.2890625, 26.43122806450644]);
     // this.timerSource = setInterval(() => {
     //   // console.log('refreshing');
@@ -184,5 +189,6 @@ export class MapsComponent implements OnInit {
     this.map.getSource('coordsSource').setData(this.coord);
 
     this.mapApi.stopStream();
+    clearInterval(this.fetchData);
   }
 }

@@ -4,7 +4,8 @@
           <td>
                 <h2>
                     Hashtag: <input type="text" placeholder="Enter Hashtag..." [(ngModel)]="hashtag" [disabled]="disableInput">
-                    <button [disabled]="!hashtag.length || disableInput" (click)="buttonClick(hashtag)">Start Stream</button>
+                    <!-- <button [disabled]="!hashtag.length || disableInput" (click)="buttonClick(hashtag)">Start Stream</button> -->
+                    <button (click)="buttonClick(hashtag)">Start Stream</button>
                 <button *ngIf="stream_status == 'Stream Started'" (click)="stopStream()">Stop Stream</button>
                   #{{hashtag}}
                 </h2> 
